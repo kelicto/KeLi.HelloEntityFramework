@@ -2,9 +2,9 @@
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 
-using KeLi.HelloSqlLite.App.Entities;
+using KeLi.HelloSQLite.App.Entities;
 
-namespace KeLi.HelloSqlLite.App
+namespace KeLi.HelloSQLite.App
 {
     public class AppDBContext : DbContext, IDisposable
     {

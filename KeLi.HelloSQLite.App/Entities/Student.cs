@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace KeLi.HelloSqlLite.App.Entities
+namespace KeLi.HelloSQLite.App.Entities
 {
     public class Student
     {

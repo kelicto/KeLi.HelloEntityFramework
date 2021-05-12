@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
 
-using KeLi.HelloSqlLite.App.Entities;
+using KeLi.HelloSQLite.App.Entities;
 
-namespace KeLi.HelloSqlLite.App
+namespace KeLi.HelloSQLite.App
 {
     internal class Program
     {

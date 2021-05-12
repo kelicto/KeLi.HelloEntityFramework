@@ -7,8 +7,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{700EAA7A-AF2B-4810-BE12-77328F8A6617}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>KeLi.HelloSqlLite.App</RootNamespace>
-    <AssemblyName>KeLi.HelloSqlLite.App</AssemblyName>
+    <RootNamespace>KeLi.HelloSQLite.App</RootNamespace>
+    <AssemblyName>KeLi.HelloSQLite.App</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
