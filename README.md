@@ -1,2 +1,2 @@
-# HelloSqlLite
-This is a simple demo for SqlLite by code first mode.
+# HelloSQLite
+This is a simple demo for SQLite by code first mode.
