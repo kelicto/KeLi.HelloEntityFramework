@@ -13,15 +13,9 @@ namespace KeLi.HelloSqlLite.App
             {
                 // Add data.
                 {
-                    context.StudentSet.Add(new Student
-                        { Name = "Tom" });
-
-                    context.StudentSet.Add(new Student
-                        { Name = "Jack" });
-
-                    context.StudentSet.Add(new Student
-                        { Name = "Tony" });
-
+                    context.StudentSet.Add(new Student { Name = "Tom" });
+                    context.StudentSet.Add(new Student { Name = "Jack" });
+                    context.StudentSet.Add(new Student { Name = "Tony" });
                     context.SaveChanges();
 
                     Console.WriteLine("After Added data:");
@@ -37,7 +31,6 @@ namespace KeLi.HelloSqlLite.App
                     var student = context.StudentSet.FirstOrDefault(f => f.Name.Contains("Tom"));
 
                     context.StudentSet.Remove(student);
-
                     context.SaveChanges();
 
                     Console.WriteLine("After Deleted data:");
