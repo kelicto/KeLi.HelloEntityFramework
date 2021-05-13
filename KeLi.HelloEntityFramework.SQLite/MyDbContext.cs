@@ -2,20 +2,20 @@
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 
-using KeLi.HelloSQLite.App.Entities;
+using KeLi.HelloEntityFramework.SQLite.DataModels;
 
-namespace KeLi.HelloSQLite.App
+namespace KeLi.HelloEntityFramework.SQLite
 {
-    public class AppDBContext : DbContext, IDisposable
+    public class MyDbContext : DbContext, IDisposable
     {
-        static AppDBContext()
+        static MyDbContext()
         {
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<AppDBContext, Configuration>());
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<MyDbContext, Configuration>());
         }
 
         public DbSet<Student> StudentSet { get; set; }
 
-        public AppDBContext() : base("DefaultConnection")
+        public MyDbContext() : base("DefaultConnection")
         {
             Database.Log = GetLog;
         }
@@ -26,7 +26,7 @@ namespace KeLi.HelloSQLite.App
             GC.SuppressFinalize(this);
         }
 
-        ~AppDBContext()
+        ~MyDbContext()
         {
             base.Dispose();
         }
@@ -39,7 +39,7 @@ namespace KeLi.HelloSQLite.App
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-            modelBuilder.Configurations.AddFromAssembly(typeof(AppDBContext).Assembly);
+            modelBuilder.Configurations.AddFromAssembly(typeof(MyDbContext).Assembly);
         }
     }
 }

@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Linq;
 
-using KeLi.HelloSQLite.App.Entities;
+using KeLi.HelloEntityFramework.SQLite.DataModels;
 
-namespace KeLi.HelloSQLite.App
+namespace KeLi.HelloEntityFramework.SQLite
 {
     internal class Program
     {
         private static void Main()
         {
-            using (var context = new AppDBContext())
+            using (var context = new MyDbContext())
             {
                 // Add data.
                 {

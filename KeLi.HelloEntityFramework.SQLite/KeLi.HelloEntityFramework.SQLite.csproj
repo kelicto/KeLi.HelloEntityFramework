@@ -7,8 +7,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{700EAA7A-AF2B-4810-BE12-77328F8A6617}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>KeLi.HelloSQLite.App</RootNamespace>
-    <AssemblyName>KeLi.HelloSQLite.App</AssemblyName>
+    <RootNamespace>KeLi.HelloEntityFramework.SQLite</RootNamespace>
+    <AssemblyName>KeLi.HelloEntityFramework.SQLite</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -68,9 +68,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppDBContext.cs" />
+    <Compile Include="MyDbContext.cs" />
     <Compile Include="Configuration.cs" />
-    <Compile Include="Entities\Student.cs" />
+    <Compile Include="DataModels\Student.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
