@@ -9,7 +9,7 @@ namespace KeLi.HelloEntityFramework.SQLite
     {
         private static void Main()
         {
-            using (var context = new MyDbContext())
+            using (var context = new MyDbContextFactory().Create())
             {
                 // Add data.
                 {

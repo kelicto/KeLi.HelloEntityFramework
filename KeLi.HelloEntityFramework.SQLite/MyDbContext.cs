@@ -1,11 +1,21 @@
 ﻿using System;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Data.Entity.ModelConfiguration.Conventions;
+using System.Data.SQLite;
 
 using KeLi.HelloEntityFramework.SQLite.DataModels;
 
 namespace KeLi.HelloEntityFramework.SQLite
 {
+    public class MyDbContextFactory : IDbContextFactory<MyDbContext>
+    {
+        public MyDbContext Create()
+        {
+            return new MyDbContext(new SQLiteConnection(@"data source=MyDatabase.db"));
+        }
+    }
+
     public class MyDbContext : DbContext, IDisposable
     {
         static MyDbContext()
@@ -16,6 +26,11 @@ namespace KeLi.HelloEntityFramework.SQLite
         public DbSet<Student> StudentSet { get; set; }
 
         public MyDbContext(string nameOrConnectionString = "DefaultConnection") : base(nameOrConnectionString)
+        {
+            Database.Log = GetLog;
+        }
+
+        public MyDbContext(SQLiteConnection connection) : base(connection, false)
         {
             Database.Log = GetLog;
         }
