@@ -71,6 +71,7 @@
     <Compile Include="MyDbContext.cs" />
     <Compile Include="Configuration.cs" />
     <Compile Include="DataModels\Student.cs" />
+    <Compile Include="MyDbContextFactory.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
