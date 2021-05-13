@@ -15,7 +15,7 @@ namespace KeLi.HelloEntityFramework.SQLite
 
         public DbSet<Student> StudentSet { get; set; }
 
-        public MyDbContext() : base("DefaultConnection")
+        public MyDbContext(string nameOrConnectionString = "DefaultConnection") : base(nameOrConnectionString)
         {
             Database.Log = GetLog;
         }
