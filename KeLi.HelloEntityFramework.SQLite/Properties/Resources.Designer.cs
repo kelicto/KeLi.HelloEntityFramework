@@ -70,6 +70,15 @@ namespace KeLi.HelloEntityFramework.SQLite.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to data source=MyDatabase.db.
+        /// </summary>
+        internal static string ConnectionString {
+            get {
+                return ResourceManager.GetString("ConnectionString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to System.Data.SQLite.
         /// </summary>
         internal static string ProviderName {

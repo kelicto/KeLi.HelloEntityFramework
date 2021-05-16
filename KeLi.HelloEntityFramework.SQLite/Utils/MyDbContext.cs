@@ -24,6 +24,11 @@ namespace KeLi.HelloEntityFramework.SQLite.Utils
             Database.Log = GetLog;
         }
 
+        public MyDbContext(SQLiteConnection connection) : base(connection, false)
+        {
+            Database.Log = GetLog;
+        }
+
         public new void Dispose()
         {
             base.Dispose();
