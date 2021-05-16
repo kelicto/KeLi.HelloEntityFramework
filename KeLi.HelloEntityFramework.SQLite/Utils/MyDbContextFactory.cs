@@ -2,9 +2,8 @@
 using System.Data.SQLite;
 
 using KeLi.HelloEntityFramework.SQLite.Properties;
-using KeLi.HelloEntityFramework.SQLite.Utils;
 
-namespace KeLi.HelloEntityFramework.SQLite
+namespace KeLi.HelloEntityFramework.SQLite.Utils
 {
     public class MyDbContextFactory : IDbContextFactory<MyDbContext>
     {
