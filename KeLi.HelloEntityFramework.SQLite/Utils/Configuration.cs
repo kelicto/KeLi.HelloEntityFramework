@@ -1,7 +1,9 @@
 ﻿using System.Data.Entity.Migrations;
 using System.Data.SQLite.EF6.Migrations;
 
-namespace KeLi.HelloEntityFramework.SQLite
+using KeLi.HelloEntityFramework.SQLite.Properties;
+
+namespace KeLi.HelloEntityFramework.SQLite.Utils
 {
     internal sealed class Configuration : DbMigrationsConfiguration<MyDbContext>
     {
@@ -9,7 +11,7 @@ namespace KeLi.HelloEntityFramework.SQLite
         {
             AutomaticMigrationsEnabled = true;
             AutomaticMigrationDataLossAllowed = true;
-            SetSqlGenerator("System.Data.SQLite", new SQLiteMigrationSqlGenerator());
+            SetSqlGenerator(Resources.ProviderName, new SQLiteMigrationSqlGenerator());
         }
     }
 }

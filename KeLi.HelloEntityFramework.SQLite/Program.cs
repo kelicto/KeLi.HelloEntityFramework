@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Linq;
 
 using KeLi.HelloEntityFramework.SQLite.DataModels;
+using KeLi.HelloEntityFramework.SQLite.Utils;
 
 namespace KeLi.HelloEntityFramework.SQLite
 {
@@ -9,64 +9,48 @@ namespace KeLi.HelloEntityFramework.SQLite
     {
         private static void Main()
         {
-            using (var context = new MyDbContext())
+            // Add data.
             {
-                // Add data.
-                {
-                    context.StudentSet.Add(new Student { Name = "Tom" });
-                    context.StudentSet.Add(new Student { Name = "Jack" });
-                    context.StudentSet.Add(new Student { Name = "Tony" });
-                    context.SaveChanges();
+                DbUtil.Insert(new Student { Name = "Tom" });
+                DbUtil.Insert(new Student { Name = "Jack" });
+                DbUtil.Insert(new Student { Name = "Tony" });
 
-                    Console.WriteLine("After Added data:");
+                Console.WriteLine("After Added data:");
 
-                    foreach (var item in context.StudentSet.ToList())
-                        Console.WriteLine(item.Name);
-                }
+                foreach (var item in DbUtil.QueryList<Student>())
+                    Console.WriteLine(item.Name);
+            }
 
-                Console.WriteLine();
+            Console.WriteLine();
 
-                // Delete data.
-                {
-                    var student = context.StudentSet.FirstOrDefault(f => f.Name.Contains("Tom"));
+            // Delete data.
+            {
+                DbUtil.Delete<Student>(f => f.Name.Contains("Tom"));
 
-                    context.StudentSet.Remove(student);
-                    context.SaveChanges();
+                Console.WriteLine("After Deleted data:");
 
-                    Console.WriteLine("After Deleted data:");
+                foreach (var item in DbUtil.QueryList<Student>())
+                    Console.WriteLine(item.Name);
+            }
 
-                    foreach (var item in context.StudentSet.ToList())
-                        Console.WriteLine(item.Name);
-                }
+            // Update data.
+            {
+                DbUtil.Update<Student>(u => u.Name.Contains("Jack"), u => u.Name = "Alice");
 
-                Console.WriteLine();
+                Console.WriteLine("After Updated data:");
 
-                // Update data.
-                {
-                    var student = context.StudentSet.FirstOrDefault(w => w.Name.Contains("Jack"));
+                foreach (var item in DbUtil.QueryList<Student>())
+                    Console.WriteLine(item.Name);
+            }
 
-                    if (student != null)
-                        student.Name = "Alice";
+            // Query data.
+            {
+                var students = DbUtil.QueryList<Student>(w => w.Name.Contains("T"));
 
-                    context.SaveChanges();
+                Console.WriteLine("Query data:");
 
-                    Console.WriteLine("After Updated data:");
-
-                    foreach (var item in context.StudentSet.ToList())
-                        Console.WriteLine(item.Name);
-                }
-
-                Console.WriteLine();
-
-                // Query data.
-                {
-                    var students = context.StudentSet.Where(w => w.Name.Contains("T"));
-
-                    Console.WriteLine("Query data:");
-
-                    foreach (var item in students)
-                        Console.WriteLine(item.Name);
-                }
+                foreach (var item in students)
+                    Console.WriteLine(item.Name);
             }
 
             Console.ReadKey();
