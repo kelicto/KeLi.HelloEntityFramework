@@ -3,6 +3,7 @@ using System.Data.Common;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.ModelConfiguration.Conventions;
+using System.Data.SQLite;
 
 using KeLi.HelloEntityFramework.SQLite.DataModels;
 using KeLi.HelloEntityFramework.SQLite.Properties;
