@@ -6,66 +6,69 @@ namespace KeLi.HelloEntityFramework.SQLite.Utils
 {
     internal class DbUtil
     {
-        public static int Insert<T>(T entity) where T : class
+        public static int Insert<T>(T entity, Func<T, bool> finder = null) where T : class
         {
             if (entity is null)
                 throw new ArgumentNullException(nameof(entity));
 
             using (var context = new MyDbContext())
             {
-                context.Set<T>().Add(entity);
+                var data = context.Set<T>();
+                var target = finder is null ? data.FirstOrDefault() : data.FirstOrDefault(finder);
+
+                if (target is null)
+                {
+                    context.Set<T>().Add(entity);
+
+                    return context.SaveChanges();
+                }
+
+                return 0;
+            }
+        }
+
+        public static T Delete<T>(Func<T, bool> finder = null) where T : class
+        {
+            using (var context = new MyDbContext())
+            {
+                var data = context.Set<T>();
+                var target = finder is null ? data.FirstOrDefault() : data.FirstOrDefault(finder);
+
+                return data.Remove(target);
+            }
+        }
+
+        public static int Update<T>(Action<T> updater, Func<T, bool> finder = null) where T : class
+        {
+            using (var context = new MyDbContext())
+            {
+                var data = context.Set<T>();
+                var target = finder is null ? data.FirstOrDefault() : data.FirstOrDefault(finder);
+
+                updater.Invoke(target);
 
                 return context.SaveChanges();
             }
         }
 
-        public static T Delete<T>(Func<T, bool> func = null) where T : class
+        public static T Query<T>(Func<T, bool> finder = null) where T : class
         {
-            if (func is null)
-                throw new ArgumentNullException(nameof(func));
-
             using (var context = new MyDbContext())
             {
-                var target = func is null ? context.Set<T>().FirstOrDefault() : context.Set<T>().FirstOrDefault(func);
+                var data = context.Set<T>();
 
-                return context.Set<T>().Remove(target);
+                return finder is null ? data.FirstOrDefault() : data.FirstOrDefault(finder);
             }
         }
 
-        public static int Update<T>(Func<T, bool> func, Action<T> action) where T : class
-        {
-            if (func is null)
-                throw new ArgumentNullException(nameof(func));
-
-            using (var context = new MyDbContext())
-            {
-                var target = func is null ? context.Set<T>().FirstOrDefault() : context.Set<T>().FirstOrDefault(func);
-
-                action.Invoke(target);
-
-                return context.SaveChanges();
-            }
-        }
-
-        public static T Query<T>(Func<T, bool> func = null) where T : class
+        public static List<T> QueryList<T>(Func<T, bool> finder = null) where T : class
         {
             using (var context = new MyDbContext())
             {
-                if (func is null)
-                    return context.Set<T>().FirstOrDefault();
-
-                return context.Set<T>().FirstOrDefault(func);
-            }
-        }
-
-        public static List<T> QueryList<T>(Func<T, bool> func = null) where T : class
-        {
-            using (var context = new MyDbContext())
-            {
-                if (func is null)
+                if (finder is null)
                     return context.Set<T>().ToList();
 
-                return context.Set<T>().Where(func).ToList();
+                return context.Set<T>().Where(finder).ToList();
             }
         }
     }

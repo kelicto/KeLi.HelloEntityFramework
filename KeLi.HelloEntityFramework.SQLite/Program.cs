@@ -25,7 +25,7 @@ namespace KeLi.HelloEntityFramework.SQLite
 
             // Delete data.
             {
-                DbUtil.Delete<Student>(f => f.Name.Contains("Tom"));
+                DbUtil.Delete<Student>(d => d.Name.Contains("Tom"));
 
                 Console.WriteLine("After Deleted data:");
 
@@ -35,7 +35,7 @@ namespace KeLi.HelloEntityFramework.SQLite
 
             // Update data.
             {
-                DbUtil.Update<Student>(u => u.Name.Contains("Jack"), u => u.Name = "Alice");
+                DbUtil.Update<Student>(s => s.Name = "Alice", u => u.Name.Contains("Jack"));
 
                 Console.WriteLine("After Updated data:");
 
@@ -45,7 +45,7 @@ namespace KeLi.HelloEntityFramework.SQLite
 
             // Query data.
             {
-                var students = DbUtil.QueryList<Student>(w => w.Name.Contains("T"));
+                var students = DbUtil.QueryList<Student>(q => q.Name.Contains("T"));
 
                 Console.WriteLine("Query data:");
 
