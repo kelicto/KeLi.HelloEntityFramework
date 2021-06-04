@@ -6,7 +6,7 @@ namespace KeLi.HelloEntityFramework.SQLite.Utils
 {
     internal class DbUtil
     {
-        public static int Write<T>(T entity, Action<T> updater, Func<T, bool> finder) where T : class
+        public static int InsertOrUpdate<T>(T entity, Action<T> updater, Func<T, bool> finder) where T : class
         {
             if (entity is null)
                 throw new ArgumentNullException(nameof(entity));
