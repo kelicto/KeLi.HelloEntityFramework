@@ -73,11 +73,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Utils\DbUtil.cs" />
-    <Compile Include="Utils\MyDbContext.cs" />
+    <Compile Include="Utils\ContextHelper.cs" />
+    <Compile Include="Utils\GenericDbContext.cs" />
     <Compile Include="Utils\Configuration.cs" />
     <Compile Include="DataModels\Student.cs" />
-    <Compile Include="Utils\MyDbContextFactory.cs" />
+    <Compile Include="Utils\GenericDbContextFactory.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

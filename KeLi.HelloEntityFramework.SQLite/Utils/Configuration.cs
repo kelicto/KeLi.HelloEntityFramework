@@ -5,7 +5,7 @@ using KeLi.HelloEntityFramework.SQLite.Properties;
 
 namespace KeLi.HelloEntityFramework.SQLite.Utils
 {
-    internal sealed class Configuration : DbMigrationsConfiguration<MyDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<GenericDbContext>
     {
         public Configuration()
         {

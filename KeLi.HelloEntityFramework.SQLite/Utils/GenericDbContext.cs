@@ -4,25 +4,24 @@ using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Data.SQLite;
 
 using KeLi.HelloEntityFramework.SQLite.DataModels;
-using KeLi.HelloEntityFramework.SQLite.Properties;
 
 namespace KeLi.HelloEntityFramework.SQLite.Utils
 {
-    public class MyDbContext : DbContext, IDisposable
+    public class GenericDbContext : DbContext, IDisposable
     {
-        static MyDbContext()
+        static GenericDbContext()
         {
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<MyDbContext, Configuration>());
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<GenericDbContext, Configuration>());
         }
 
         public DbSet<Student> StudentSet { get; set; }
 
-        public MyDbContext() : base(Resources.ConnectionName)
+        public GenericDbContext(string connectionString) : base(connectionString)
         {
             Database.Log = GetLog;
         }
 
-        public MyDbContext(SQLiteConnection connection) : base(connection, false)
+        public GenericDbContext(SQLiteConnection connection) : base(connection, false)
         {
             Database.Log = GetLog;
         }
@@ -33,7 +32,7 @@ namespace KeLi.HelloEntityFramework.SQLite.Utils
             GC.SuppressFinalize(this);
         }
 
-        ~MyDbContext()
+        ~GenericDbContext()
         {
             base.Dispose();
         }
@@ -46,7 +45,7 @@ namespace KeLi.HelloEntityFramework.SQLite.Utils
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-            modelBuilder.Configurations.AddFromAssembly(typeof(MyDbContext).Assembly);
+            modelBuilder.Configurations.AddFromAssembly(typeof(GenericDbContext).Assembly);
         }
     }
 }

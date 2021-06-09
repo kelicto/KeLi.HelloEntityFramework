@@ -4,9 +4,19 @@ using System.Linq;
 
 namespace KeLi.HelloEntityFramework.SQLite.Utils
 {
-    internal class DbUtil
+    public class ContextHelper
     {
-        public static int InsertOrUpdate<T>(T entity, Action<T> updater, Func<T, bool> finder) where T : class
+        private readonly string _connectionString;
+
+        public ContextHelper(string connectionString)
+        {
+            if (string.IsNullOrWhiteSpace(connectionString))
+                throw new ArgumentNullException(nameof(connectionString));
+
+            _connectionString = connectionString;
+        }
+
+        public int InsertOrUpdate<T>(T entity, Action<T> updater, Func<T, bool> finder) where T : class
         {
             if (entity is null)
                 throw new ArgumentNullException(nameof(entity));
@@ -17,7 +27,7 @@ namespace KeLi.HelloEntityFramework.SQLite.Utils
             if (finder is null)
                 throw new ArgumentNullException(nameof(finder));
 
-            using (var context = new MyDbContext())
+            using (var context = new GenericDbContext(_connectionString))
             {
                 var data = context.Set<T>();
                 var target = data.FirstOrDefault(finder);
@@ -35,12 +45,12 @@ namespace KeLi.HelloEntityFramework.SQLite.Utils
             }
         }
 
-        public static int Insert<T>(T entity, Func<T, bool> finder = null) where T : class
+        public int Insert<T>(T entity, Func<T, bool> finder = null) where T : class
         {
             if (entity is null)
                 throw new ArgumentNullException(nameof(entity));
 
-            using (var context = new MyDbContext())
+            using (var context = new GenericDbContext(_connectionString))
             {
                 var data = context.Set<T>();
                 var target = finder is null ? data.FirstOrDefault() : data.FirstOrDefault(finder);
@@ -56,12 +66,12 @@ namespace KeLi.HelloEntityFramework.SQLite.Utils
             }
         }
 
-        public static T Delete<T>(Func<T, bool> finder) where T : class
+        public T Delete<T>(Func<T, bool> finder) where T : class
         {
             if (finder is null)
                 throw new ArgumentNullException(nameof(finder));
 
-            using (var context = new MyDbContext())
+            using (var context = new GenericDbContext(_connectionString))
             {
                 var data = context.Set<T>();
                 var target = data.FirstOrDefault(finder);
@@ -70,7 +80,7 @@ namespace KeLi.HelloEntityFramework.SQLite.Utils
             }
         }
 
-        public static int Update<T>(Action<T> updater, Func<T, bool> finder) where T : class
+        public int Update<T>(Action<T> updater, Func<T, bool> finder) where T : class
         {
             if (updater is null)
                 throw new ArgumentNullException(nameof(updater));
@@ -78,7 +88,7 @@ namespace KeLi.HelloEntityFramework.SQLite.Utils
             if (finder is null)
                 throw new ArgumentNullException(nameof(finder));
 
-            using (var context = new MyDbContext())
+            using (var context = new GenericDbContext(_connectionString))
             {
                 var data = context.Set<T>();
                 var target = data.FirstOrDefault(finder);
@@ -92,9 +102,9 @@ namespace KeLi.HelloEntityFramework.SQLite.Utils
             }
         }
 
-        public static T Query<T>(Func<T, bool> finder = null) where T : class
+        public T Query<T>(Func<T, bool> finder = null) where T : class
         {
-            using (var context = new MyDbContext())
+            using (var context = new GenericDbContext(_connectionString))
             {
                 var data = context.Set<T>();
 
@@ -102,9 +112,9 @@ namespace KeLi.HelloEntityFramework.SQLite.Utils
             }
         }
 
-        public static List<T> QueryList<T>(Func<T, bool> finder = null) where T : class
+        public List<T> QueryList<T>(Func<T, bool> finder = null) where T : class
         {
-            using (var context = new MyDbContext())
+            using (var context = new GenericDbContext(_connectionString))
             {
                 if (finder is null)
                     return context.Set<T>().ToList();

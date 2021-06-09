@@ -1,6 +1,7 @@
 ﻿using System;
 
 using KeLi.HelloEntityFramework.SQLite.DataModels;
+using KeLi.HelloEntityFramework.SQLite.Properties;
 using KeLi.HelloEntityFramework.SQLite.Utils;
 
 namespace KeLi.HelloEntityFramework.SQLite
@@ -9,15 +10,17 @@ namespace KeLi.HelloEntityFramework.SQLite
     {
         private static void Main()
         {
+            var helper = new ContextHelper(Resources.ConnectionString);
+
             // Add data.
             {
-                DbUtil.Insert(new Student { Name = "Tom" });
-                DbUtil.Insert(new Student { Name = "Jack" });
-                DbUtil.Insert(new Student { Name = "Tony" });
+                helper.Insert(new Student { Name = "Tom" });
+                helper.Insert(new Student { Name = "Jack" });
+                helper.Insert(new Student { Name = "Tony" });
 
                 Console.WriteLine("After Added data:");
 
-                foreach (var item in DbUtil.QueryList<Student>())
+                foreach (var item in helper.QueryList<Student>())
                     Console.WriteLine(item.Name);
             }
 
@@ -25,27 +28,27 @@ namespace KeLi.HelloEntityFramework.SQLite
 
             // Delete data.
             {
-                DbUtil.Delete<Student>(d => d.Name.Contains("Tom"));
+                helper.Delete<Student>(d => d.Name.Contains("Tom"));
 
                 Console.WriteLine("After Deleted data:");
 
-                foreach (var item in DbUtil.QueryList<Student>())
+                foreach (var item in helper.QueryList<Student>())
                     Console.WriteLine(item.Name);
             }
 
             // Update data.
             {
-                DbUtil.Update<Student>(s => s.Name = "Alice", u => u.Name.Contains("Jack"));
+                helper.Update<Student>(s => s.Name = "Alice", u => u.Name.Contains("Jack"));
 
                 Console.WriteLine("After Updated data:");
 
-                foreach (var item in DbUtil.QueryList<Student>())
+                foreach (var item in helper.QueryList<Student>())
                     Console.WriteLine(item.Name);
             }
 
             // Query data.
             {
-                var students = DbUtil.QueryList<Student>(q => q.Name.Contains("T"));
+                var students = helper.QueryList<Student>(q => q.Name.Contains("T"));
 
                 Console.WriteLine("Query data:");
 
