@@ -3,7 +3,7 @@ using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Data.SQLite;
 
-using KeLi.HelloEntityFramework.SQLite.DataModels;
+using KeLi.HelloEntityFramework.SQLite.Models;
 
 namespace KeLi.HelloEntityFramework.SQLite.Utils
 {

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace KeLi.HelloEntityFramework.SQLite.DataModels
+namespace KeLi.HelloEntityFramework.SQLite.Models
 {
     public class Student
     {

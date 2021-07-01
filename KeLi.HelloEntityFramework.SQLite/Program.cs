@@ -1,6 +1,6 @@
 ﻿using System;
 
-using KeLi.HelloEntityFramework.SQLite.DataModels;
+using KeLi.HelloEntityFramework.SQLite.Models;
 using KeLi.HelloEntityFramework.SQLite.Properties;
 using KeLi.HelloEntityFramework.SQLite.Utils;
 
