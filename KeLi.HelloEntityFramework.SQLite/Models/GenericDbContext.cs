@@ -3,9 +3,7 @@ using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Data.SQLite;
 
-using KeLi.HelloEntityFramework.SQLite.Models;
-
-namespace KeLi.HelloEntityFramework.SQLite.Utils
+namespace KeLi.HelloEntityFramework.SQLite.Models
 {
     public class GenericDbContext : DbContext, IDisposable
     {

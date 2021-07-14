@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace KeLi.HelloEntityFramework.SQLite.Utils
+using KeLi.HelloEntityFramework.SQLite.Models;
+
+namespace KeLi.HelloEntityFramework.SQLite.Utilities
 {
     public class ContextHelper
     {

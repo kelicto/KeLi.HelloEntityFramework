@@ -3,7 +3,7 @@ using System.Data.SQLite;
 
 using KeLi.HelloEntityFramework.SQLite.Properties;
 
-namespace KeLi.HelloEntityFramework.SQLite.Utils
+namespace KeLi.HelloEntityFramework.SQLite.Models
 {
     public class GenericDbContextFactory : IDbContextFactory<GenericDbContext>
     {

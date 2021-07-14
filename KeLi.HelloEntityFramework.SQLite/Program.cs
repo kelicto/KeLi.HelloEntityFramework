@@ -2,7 +2,7 @@
 
 using KeLi.HelloEntityFramework.SQLite.Models;
 using KeLi.HelloEntityFramework.SQLite.Properties;
-using KeLi.HelloEntityFramework.SQLite.Utils;
+using KeLi.HelloEntityFramework.SQLite.Utilities;
 
 namespace KeLi.HelloEntityFramework.SQLite
 {

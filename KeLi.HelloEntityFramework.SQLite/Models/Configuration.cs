@@ -3,7 +3,7 @@ using System.Data.SQLite.EF6.Migrations;
 
 using KeLi.HelloEntityFramework.SQLite.Properties;
 
-namespace KeLi.HelloEntityFramework.SQLite.Utils
+namespace KeLi.HelloEntityFramework.SQLite.Models
 {
     internal sealed class Configuration : DbMigrationsConfiguration<GenericDbContext>
     {
