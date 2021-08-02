@@ -3,11 +3,11 @@ using System.Data.SQLite.EF6.Migrations;
 
 using KeLi.HelloEntityFramework.SQLite.Properties;
 
-namespace KeLi.HelloEntityFramework.SQLite.Models
+namespace KeLi.HelloEntityFramework.SQLite.Contexts
 {
-    internal sealed class Configuration : DbMigrationsConfiguration<GenericDbContext>
+    internal sealed class GenericDbMigrationsConfiguration : DbMigrationsConfiguration<GenericDbContext>
     {
-        public Configuration()
+        public GenericDbMigrationsConfiguration()
         {
             AutomaticMigrationsEnabled = true;
             AutomaticMigrationDataLossAllowed = true;

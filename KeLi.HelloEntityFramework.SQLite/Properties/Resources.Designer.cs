@@ -61,20 +61,11 @@ namespace KeLi.HelloEntityFramework.SQLite.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to DefaultConnection.
+        ///   Looks up a localized string similar to MyDatabase.
         /// </summary>
-        internal static string ConnectionName {
+        internal static string Key_MyDatabase {
             get {
-                return ResourceManager.GetString("ConnectionName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to data source=MyDatabase.db.
-        /// </summary>
-        internal static string ConnectionString {
-            get {
-                return ResourceManager.GetString("ConnectionString", resourceCulture);
+                return ResourceManager.GetString("Key_MyDatabase", resourceCulture);
             }
         }
         

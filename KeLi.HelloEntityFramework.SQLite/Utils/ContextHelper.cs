@@ -1,21 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 
-using KeLi.HelloEntityFramework.SQLite.Models;
+using KeLi.HelloEntityFramework.SQLite.Contexts;
 
-namespace KeLi.HelloEntityFramework.SQLite.Utilities
+namespace KeLi.HelloEntityFramework.SQLite.Utils
 {
     public class ContextHelper
     {
         private readonly string _connectionString;
 
-        public ContextHelper(string connectionString)
+        public ContextHelper(string connectionKey)
         {
-            if (string.IsNullOrWhiteSpace(connectionString))
-                throw new ArgumentNullException(nameof(connectionString));
+            if (string.IsNullOrWhiteSpace(connectionKey))
+                throw new ArgumentNullException(nameof(connectionKey));
 
-            _connectionString = connectionString;
+            _connectionString = ConfigurationManager.ConnectionStrings[connectionKey].ConnectionString;
         }
 
         public int InsertOrUpdate<T>(T entity, Action<T> updater, Func<T, bool> finder) where T : class

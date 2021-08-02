@@ -3,13 +3,15 @@ using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Data.SQLite;
 
-namespace KeLi.HelloEntityFramework.SQLite.Models
+using KeLi.HelloEntityFramework.SQLite.Models;
+
+namespace KeLi.HelloEntityFramework.SQLite.Contexts
 {
     public class GenericDbContext : DbContext, IDisposable
     {
         static GenericDbContext()
         {
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<GenericDbContext, Configuration>());
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<GenericDbContext, GenericDbMigrationsConfiguration>());
         }
 
         public DbSet<Student> StudentSet { get; set; }

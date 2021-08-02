@@ -2,7 +2,7 @@
 
 using KeLi.HelloEntityFramework.SQLite.Models;
 using KeLi.HelloEntityFramework.SQLite.Properties;
-using KeLi.HelloEntityFramework.SQLite.Utilities;
+using KeLi.HelloEntityFramework.SQLite.Utils;
 
 namespace KeLi.HelloEntityFramework.SQLite
 {
@@ -10,7 +10,7 @@ namespace KeLi.HelloEntityFramework.SQLite
     {
         private static void Main()
         {
-            var helper = new ContextHelper(Resources.ConnectionString);
+            var helper = new ContextHelper(Resources.Key_MyDatabase);
 
             // Add data.
             {
